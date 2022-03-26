@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="IntroductionThis project was born for two reason:  to improve my knowledge about the Object-oriented programming in C++; to construct a personal LED Controller with control knobs, specifically one for">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LED Controller v1.0.0">
+<meta property="og:url" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/index.html">
+<meta property="og:site_name" content="Davide Palladino">
+<meta property="og:description" content="IntroductionThis project was born for two reason:  to improve my knowledge about the Object-oriented programming in C++; to construct a personal LED Controller with control knobs, specifically one for">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://davidepalladino.github.io/LED-Controller-v1-0-0/realization-with-stripboard.jpg">
+<meta property="article:published_time" content="2020-09-25T17:40:00.000Z">
+<meta property="article:modified_time" content="2022-03-26T12:31:20.061Z">
+<meta property="article:author" content="Davide Palladino">
+<meta property="article:tag" content="arduino">
+<meta property="article:tag" content="printing">
+<meta property="article:tag" content="electronic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://davidepalladino.github.io/LED-Controller-v1-0-0/realization-with-stripboard.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LED Controller v1.0.0</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/projects_url">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&text=LED Controller v1.0.0"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&is_video=false&description=LED Controller v1.0.0"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LED Controller v1.0.0&body=Check out this article: https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&name=LED Controller v1.0.0&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&t=LED Controller v1.0.0"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-do-you-need"><span class="toc-number">1.1.</span> <span class="toc-text">What do you need</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realizing-the-PCB"><span class="toc-number">2.</span> <span class="toc-text">Realizing the PCB</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        LED Controller v1.0.0
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Davide Palladino</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-09-25T17:40:00.000Z" itemprop="datePublished">2020-09-25</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Arduino/">Arduino</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/arduino/" rel="tag">arduino</a>, <a class="tag-link-link" href="/tags/electronic/" rel="tag">electronic</a>, <a class="tag-link-link" href="/tags/printing/" rel="tag">printing</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This project was born for two reason:</p>
+<ol>
+<li>to improve my knowledge about the Object-oriented programming in C++;</li>
+<li>to construct a personal LED Controller with control knobs, specifically one for intensity and three for selecting various colors (red, green and blue), for my desk.<br>Furthermore, I want to share this project and a little guide on how to build it.</li>
+</ol>
+<h3 id="What-do-you-need"><a href="#What-do-you-need" class="headerlink" title="What do you need"></a>What do you need</h3><p>Firstly, you’ll need of some component. Every one in the list has the link where to buy cheaply:</p>
+<table>
+<thead>
+<tr>
+<th>Qty.</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Arduino Nano</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SD card reader</td>
+</tr>
+<tr>
+<td>1</td>
+<td>MicroSD</td>
+</tr>
+<tr>
+<td>1</td>
+<td>LED strip RGB 5050 SMD not addressable at 12V</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Led strip connector 4 pin</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Led strip extension</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Positive Voltage Regulator L7805</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Transistor TIP120</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Resistor at 220Ω</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Resistor at 10kΩ</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Resistor at 1kΩ</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Green LED diode at 5mm</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Red LED diode at 5mm</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Switch Tact at 6x6x5mm</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Switch SPST at 15x10x10mm</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Rotary encoder</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Female base for Power supply</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Power supply at 2A, 12V</td>
+</tr>
+<tr>
+<td><em>undef.</em></td>
+<td>Wires both for 2A and 100mA of electrical current</td>
+</tr>
+</tbody></table>
+<p>The size of microSD is not important because each file will be 1 kb. In the SD there will be four files, that is the three profile and the manual configuration to load on every power up. This lists are merely indicative, but the size and the type of component are correct.</p>
+<p>In addition, if you want to realized the PCB at home, consider to use these other materials:</p>
+<table>
+<thead>
+<tr>
+<th>Qty.</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Copper clad board double-sided</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Copper clad board single-sided</td>
+</tr>
+<tr>
+<td><em>undef.</em></td>
+<td>Rivet at 1x2.5mm</td>
+</tr>
+</tbody></table>
+<p>Consider the external diameter of rivet and in this case modify the files of PCBs. Currently, the diameter is 1mm.<br>I don’t suggest you the type and the color of filament for the case. My chose has been the black color on PLA filament; same material for the buttons but in grey color.</p>
+<h2 id="Realizing-the-PCB"><a href="#Realizing-the-PCB" class="headerlink" title="Realizing the PCB"></a>Realizing the PCB</h2><p>There are two ways to realize the PCB:</p>
+<ol>
+<li>by taking advantage with some company that realize it cheaply;</li>
+<li>by you with several techniques.<br>In my case I decided to realize the circuit board at home. The first idea was to use a stripboard, but the realization of the tracks would be little elegant for the final result, considering the number of the components and its connections.</li>
+</ol>
+<p><img src="/LED-Controller-v1-0-0/realization-with-stripboard.jpg"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-do-you-need"><span class="toc-number">1.1.</span> <span class="toc-text">What do you need</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realizing-the-PCB"><span class="toc-number">2.</span> <span class="toc-text">Realizing the PCB</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&text=LED Controller v1.0.0"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&is_video=false&description=LED Controller v1.0.0"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LED Controller v1.0.0&body=Check out this article: https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&name=LED Controller v1.0.0&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&t=LED Controller v1.0.0"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    Davide Palladino
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/projects_url">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
