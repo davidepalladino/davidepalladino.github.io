@@ -421,7 +421,6 @@ body table {
   text-align: left;
   font-size: 12px;
   overflow: auto;
-  display: block;
 }
 body th {
   padding: 8px;
