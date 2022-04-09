@@ -18,9 +18,9 @@
 <meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/pinout-DS3231.jpg">
 <meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/flash-download-tool-example.jpg">
 <meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/android-app.jpg">
-<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/deployment-diagram.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/uml-deployment-diagram-system.jpg">
 <meta property="article:published_time" content="2021-07-12T19:46:00.000Z">
-<meta property="article:modified_time" content="2022-04-09T14:56:21.125Z">
+<meta property="article:modified_time" content="2022-04-09T15:24:16.136Z">
 <meta property="article:author" content="Davide Palladino">
 <meta property="article:tag" content="ESP">
 <meta property="article:tag" content="printing">
@@ -80,6 +80,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/02/13/Air-Analyzer-v3-0-0/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2020/09/25/LED-Controller-v1-0-0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -257,8 +259,9 @@
 <li>select <em>Developer Mode</em>;</li>
 <li>select <em>ESP8266 DownloadTool</em>;</li>
 <li>configure it as in figure;</li>
-<li>press <em>Start</em>.<br>Is very important select the location of <code>.bin</code> file and set the address to <code>0x00000</code> and select the right COM port.</li>
+<li>press <em>Start</em>.</li>
 </ul>
+<p>Is very important select the location of <code>.bin</code> file and set the address to <code>0x00000</code> and select the right COM port.</p>
 <p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/flash-download-tool-example.jpg" alt="Flash Download Tool Example"></p>
 <p>After the flashing of firmware, unplug and plug the device to power supply. For the first installation of device, you will have to need a mobile application developed for Android smartphone. Every device has the need to store the values into user database, different from others.</p>
 <h2 id="Mobile-application"><a href="#Mobile-application" class="headerlink" title="Mobile application"></a>Mobile application</h2><p>Looking the details, this mobile application was born firstly to view the measures outside home. Considering that Android doesn’t communicate directly with an external database, I have chosen to use <a target="_blank" rel="noopener" href="https://lumen.laravel.com/docs/9.x">Lumen</a> as API framework. In this case, thanks to the App, I implemented a system where an user can:</p>
@@ -270,8 +273,8 @@
 </ul>
 <p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/android-app.jpg" alt="Android App"></p>
 <p>As mentioned before, every user has the own database where can see the measures also with external and desktop application like <a target="_blank" rel="noopener" href="https://www.knime.com/">KNIME</a>.</p>
-<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/deployment-diagram.jpg" alt="Android App"></p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Thank you for reading this article and if you have some suggestion or would you like to contribute, please leave a comment below or write me at <a href="mailto:&#x64;&#x61;&#x76;&#105;&#x64;&#101;&#112;&#x61;&#108;&#x6c;&#97;&#x64;&#105;&#110;&#x6f;&#64;&#104;&#111;&#x74;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x64;&#x61;&#x76;&#105;&#x64;&#101;&#112;&#x61;&#108;&#x6c;&#97;&#x64;&#105;&#110;&#x6f;&#64;&#104;&#111;&#x74;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>.</p>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/uml-deployment-diagram-system.jpg" alt="UML Deployment Diagram of system"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Thank you for reading this article and if you have some suggestion, write me at <a href="mailto:&#100;&#x61;&#x76;&#x69;&#100;&#x65;&#x70;&#97;&#x6c;&#x6c;&#97;&#100;&#105;&#x6e;&#x6f;&#x40;&#x68;&#111;&#x74;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#x76;&#x69;&#100;&#x65;&#x70;&#97;&#x6c;&#x6c;&#97;&#100;&#105;&#x6e;&#x6f;&#x40;&#x68;&#111;&#x74;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>.</p>
 
   </div>
 </article>
