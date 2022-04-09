@@ -1043,7 +1043,7 @@ body {
 }
 @media (min-width: 480px) {
   .post-list .post-item {
-    display: flex;
+    display: inherit;
     margin-bottom: 5px;
   }
   .post-list .post-item .meta {
@@ -1632,4 +1632,18 @@ code {
 }
 .highlight .line {
   height: 22px;
+}
+.td-category {
+  color: #2bbc8a;
+  text-align: end;
+  padding-right: 0px;
+}
+.block-warning {
+  padding-top: 1.25em;
+  padding-right: 2.375em;
+  padding-bottom: 1.25em;
+  padding-left: 2.375em;
+  background-color: #cf2e2e;
+  line-height: 1.9;
+  text-rendering: optimizeLegibility;
 }
