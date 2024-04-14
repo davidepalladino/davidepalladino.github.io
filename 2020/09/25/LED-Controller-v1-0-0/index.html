@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="IntroductionThis project was born for two reason:  to improve my knowledge about the Object-oriented programming in C++; to construct a personal LED Controller with control knobs, specifically one for">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LED Controller v1.0.0">
+<meta property="og:url" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/index.html">
+<meta property="og:site_name" content="Davide Palladino">
+<meta property="og:description" content="IntroductionThis project was born for two reason:  to improve my knowledge about the Object-oriented programming in C++; to construct a personal LED Controller with control knobs, specifically one for">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/realization-with-stripboard.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/drawing-on-pcb.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/immersing-on-ferric-chloride.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/cleaned-pcb.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/interruption-of-some-track.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/soldering-the-gap-between-rivet-and-hole-track.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/final-result-pcb.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/main-model.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/front-panel-model.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/top-panel-model.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/top-panel-model.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/final-result-case.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/prototype.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/disgusting-microsd-card.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/final-result.jpg">
+<meta property="article:published_time" content="2020-09-25T17:40:00.000Z">
+<meta property="article:modified_time" content="2024-04-14T15:53:38.834Z">
+<meta property="article:author" content="Davide Palladino">
+<meta property="article:tag" content="printing">
+<meta property="article:tag" content="electronic">
+<meta property="article:tag" content="arduino">
+<meta property="article:tag" content="lighting">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/images/realization-with-stripboard.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LED Controller v1.0.0</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/07/12/Air-Analyzer-v2-0-3/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&text=LED Controller v1.0.0"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&is_video=false&description=LED Controller v1.0.0"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LED Controller v1.0.0&body=Check out this article: https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&name=LED Controller v1.0.0&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&t=LED Controller v1.0.0"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-do-you-need"><span class="toc-number">1.1.</span> <span class="toc-text">What do you need</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realizing-the-PCB"><span class="toc-number">2.</span> <span class="toc-text">Realizing the PCB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realizing-the-case"><span class="toc-number">3.</span> <span class="toc-text">Realizing the case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Installing-the-software"><span class="toc-number">4.</span> <span class="toc-text">Installing the software</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        LED Controller v1.0.0
+    </h1>
+
+
+
+    <div class="meta">
+      
+    <div class="postdate">
+      
+        <time datetime="2020-09-25T17:40:00.000Z" itemprop="datePublished">2020-09-25</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Arduino/">Arduino</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/arduino/" rel="tag">arduino</a>, <a class="tag-link-link" href="/tags/electronic/" rel="tag">electronic</a>, <a class="tag-link-link" href="/tags/lighting/" rel="tag">lighting</a>, <a class="tag-link-link" href="/tags/printing/" rel="tag">printing</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This project was born for two reason:</p>
+<ol>
+<li>to improve my knowledge about the <em>Object-oriented programming</em> in C++;</li>
+<li>to construct a personal LED Controller with control knobs, specifically one for intensity and three for selecting various colors (red, green and blue), for my desk.</li>
+</ol>
+<p>Furthermore, I want to share this project and a little guide on how to build it.</p>
+<h3 id="What-do-you-need"><a href="#What-do-you-need" class="headerlink" title="What do you need"></a>What do you need</h3><p>Firstly, you’ll need these <strong>components</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Qty.</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Arduino Nano</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SD card reader</td>
+</tr>
+<tr>
+<td>1</td>
+<td>MicroSD</td>
+</tr>
+<tr>
+<td>1</td>
+<td>LED strip RGB 5050 SMD not addressable at 12V</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Led strip connector 4 pin</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Led strip extension</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Positive Voltage Regulator L7805</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Transistor TIP120</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Resistor at 220Ω</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Resistor at 10kΩ</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Resistor at 1kΩ</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Green LED diode at 5mm</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Red LED diode at 5mm</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Switch Tact at 6x6x5mm</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Switch SPST at 15x10x10mm</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Rotary encoder</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Female base for Power supply</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Power supply at 2A, 12V</td>
+</tr>
+<tr>
+<td><em>undef.</em></td>
+<td>Wires both for 2A and 100mA of electrical current</td>
+</tr>
+</tbody></table>
+<p>The size of microSD is not important because each file will be 1 kb. In the SD there will be four files, that is the three profile and the manual configuration to load on every power up. This lists are merely indicative, but the size and the type of component are correct. In addition, if you want to realized the PCB at home, consider to use these other materials:</p>
+<table>
+<thead>
+<tr>
+<th>Qty.</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Copper clad board double-sided</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Copper clad board single-sided</td>
+</tr>
+<tr>
+<td><em>undef.</em></td>
+<td>Rivet at 1x2.5mm</td>
+</tr>
+</tbody></table>
+<p>Consider the external diameter of rivet and in this case modify the files of PCBs. Currently, the diameter is 1mm.</p>
+<p>I don’t suggest you the type and the color of filament for the case. My chose has been the black color on PLA filament; same material for the buttons but in grey color.</p>
+<h2 id="Realizing-the-PCB"><a href="#Realizing-the-PCB" class="headerlink" title="Realizing the PCB"></a>Realizing the PCB</h2><p>There are two ways to realize the PCB:</p>
+<ol>
+<li>by taking advantage with some company that realize it cheaply;</li>
+<li>by you with several techniques.</li>
+</ol>
+<p>In my case I decided to realize the circuit board at home. The first idea was to use a <strong>stripboard</strong>, but the realization of the tracks would be little elegant for the final result, considering the number of the components and its connections.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/realization-with-stripboard.jpg" alt="Image of stripboard"></p>
+<p>I decided to draw the tracks and holes on the circuit board with my <strong>3D printer</strong> (like a plotter),</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/drawing-on-pcb.jpg" alt="Image of PCB drawn"></p>
+<p>immersing it in <strong>ferric chloride solution</strong>,</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/immersing-on-ferric-chloride.jpg" alt="Image of PCB immersed"></p>
+<p>and then cleaning it with <strong>99% isopropyl alcohol</strong>.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/cleaned-pcb.jpg" alt="Image of PCB cleaned"></p>
+<p>The only flaw is the interruption of some track. I don’t know if is due from the permanent maker, in this case the <em>Sharpie Ultra Fine Point</em>. Next time I will be allowed to try with another maker, like the <em>Lumocolor</em> as suggested from some friend. To solve it, I soldered a piece of copper wire.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/interruption-of-some-track.jpg" alt="Image of PCB interruption"></p>
+<p>After the realization of the holes with a drill press, applying the <strong>rivets</strong> and solded the components, the result is realy good. The only precaution has been the distance between the hole track and the rivet, where was not guaranteed the contact. To solve it, I soldered a bit of tin.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/soldering-the-gap-between-rivet-and-hole-track.jpg" alt="Image of the soldering the GAP"></p>
+<p>Then, the final result of PCB.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/final-result-pcb.jpg" alt="Image of the result for the PCB"></p>
+<p>Being an homemade circuit board, I did not marked the names of the connections. To help you, see the files that I share later in this chapter.</p>
+<p>Probably you’ll wonder how I used a 3D printer like plotter and how I used a ferric chloride solution. I suggest you to follow this two little guides, customizing the tool for the permanent maker:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=CuWZWAfBsm8">2D printing on a 3D printer – Free and easy guide</a>;</li>
+<li><a target="_blank" rel="noopener" href="https://www.instructables.com/id/3D-Printer-PCB-Etching/">3D Printer PCB Etching</a>.</li>
+</ul>
+<p>Here the <strong>files</strong> about the PCB. If you want, you will be able to modify them.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="download/pcb/mainboard.fzz">Mainboard</a></td>
+<td>.fzz</td>
+<td>48,8 kB</td>
+</tr>
+<tr>
+<td><a href="download/pcb/led-indicators.fzz">LED indicators</a></td>
+<td>.fzz</td>
+<td>4,8 kB</td>
+</tr>
+<tr>
+<td><a href="download/pcb/profiles-buttons.fzz">Profile buttons</a></td>
+<td>.fzz</td>
+<td>9,4 kB</td>
+</tr>
+</tbody></table>
+<h2 id="Realizing-the-case"><a href="#Realizing-the-case" class="headerlink" title="Realizing the case"></a>Realizing the case</h2><p>After the construction of circuit board, you will need a case. Foreword, I’m not a <em>3D modeling designer</em> but I have realized one. I decided to print it with PLA filament: black color for the <strong>base</strong>, <strong>front</strong> and <strong>top panel</strong>; grey color for the <strong>buttons</strong>; transparent color for the <strong>LED covers</strong>. The first print has been the base. For spacing the SD card reader from the base I used four M2x15mm spacers; instead, for the main circuit board I used four M2x3mm spacers.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/main-model.jpg" alt="Image of the main case"></p>
+<p>The second print has been the front panel. For each rotary encoder I used two M3x6mm screws. Instead, for spacing the the LED indicators board from the front panel I used two Dist M2x8mm spacers.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/front-panel-model.jpg" alt="Image of the front panel case"></p>
+<p>The third print has been the top panel, the three buttons and the two LED covers. Here too I used two M2x5mm spacers.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/top-panel-model.jpg" alt="Image of the top panel case"></p>
+<p>Finally, to mount the top panel at the base I used three M2x10mm screws and one M2x7mm screw.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/top-panel-model.jpg" alt="Image of the top panel case"></p>
+<p>Finally, to mount the top panel at the base I used three M2x10mm screws and one M2x7mm screw.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/final-result-case.jpg" alt="Image of the result for the case"></p>
+<p>Here the <strong>files</strong> about the case. If you want, you will be able to modify them.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="download/case/base.stl">Base</a></td>
+<td>.stl</td>
+<td>88,4 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/front-panel.stl">Front panel</a></td>
+<td>.stl</td>
+<td>167 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/top-panel.stl">Top panel</a></td>
+<td>.stl</td>
+<td>65,8 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/button.stl">Button</a></td>
+<td>.stl</td>
+<td>1,4 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/led-cover.stl">LED cover</a></td>
+<td>.stl</td>
+<td>31,9 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/project.f3d">Project</a></td>
+<td>.f3d</td>
+<td>450 kB</td>
+</tr>
+</tbody></table>
+<h2 id="Installing-the-software"><a href="#Installing-the-software" class="headerlink" title="Installing the software"></a>Installing the software</h2><p>Finally, the last chapter about the realitazion of this project. Actually, this was the first thing that I did, infact on the basis of this, I realized the circuit board (with a breadboard) and the case for it.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/prototype.jpg" alt="Image of the prototype"></p>
+<p>As you will see in this image, I used the potentiometers until a dear friend suggested me the rotary encoder. This component has simplified the code significantly. For saving the files of profiles I used this disgusting 256 MB microSD card. “Disgusting” because I have been several hour to understand the reason of corruption of files.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/disgusting-microsd-card.jpg" alt="Image of the prototype"></p>
+<p>For realizing the code of this project I used <strong>PlatformIO</strong> on <strong>Visual Studio Code</strong>. As I said in before, this project borns for two reason. Thanks to it, I have realized two main libraries available on official <strong>Library Manager</strong> of <strong>Arduino</strong>:</p>
+<ul>
+<li><strong>Button-Arduino</strong>, to manage the button with short and long press;</li>
+<li><strong>AnalogIO-Arduino</strong>, to manage the analog input&#x2F;output.</li>
+</ul>
+<p>Here the <strong>files</strong> about the software.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="download/software/led-controller-v1-0-0.zip">LED Controller v1.0.0</a></td>
+<td>.zip</td>
+<td>86,7 kB</td>
+</tr>
+</tbody></table>
+<p>I suggest you to use PlatformIO, importing the folder like a project and then writing the software on your microcontroller, that will has to be an <strong>Arduino Nano</strong>. If you want, you can change it with another microcontroller, considering to modify the circuit board, the case and the file <code>config.h</code> in <code>src</code> folder.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Setting the input and output pins about the encoders and the strip led, and the speeds for the encoders */</span></span><br><span class="line"><span class="comment">// Intensity</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinAEncoderIntensity = A0;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinBEncoderIntensity = A1;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> speedIntensity = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Red</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinAEncoderRed = A2;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinBEncoderRed = A3;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinLedStripRed = <span class="number">5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> speedRed = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Green</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinAEncoderGreen = A4;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinBEncoderGreen = A5;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinLedStripGreen = <span class="number">6</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> speedGreen = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Blue</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinAEncoderBlue = A6;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinBEncoderBlue = A7;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinLedStripBlue = <span class="number">3</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> speedBlue = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Setting the output pins about the single led, the times and timeout for blink. */</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinLedSingleRed = <span class="number">9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinLedSingleGreen = <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> timesBlinkError = <span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint16_t</span> timeoutBlinkError = <span class="number">500</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> timesBlinkReadProfile = <span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint16_t</span> timeoutBlinkReadProfile = <span class="number">1000</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> timesBlinkSaveProfile = <span class="number">3</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> timeoutBlinkSaveProfile = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Setting the input pins and the time for the long press about the buttons. */</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinButtonProfile1 = <span class="number">2</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinButtonProfile2 = <span class="number">4</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinButtonProfile3 = <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint16_t</span> timeLongPress = <span class="number">3000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Setting the baudrate for Serial Monitor. */</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> baudRate = <span class="number">9600</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Setting the card reader and the namefiles. */</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> pinCS = <span class="number">8</span>;</span><br><span class="line"><span class="type">const</span> String fileNameManual = <span class="string">&quot;manual.dat&quot;</span>;</span><br><span class="line"><span class="type">const</span> String fileNameProfile1 = <span class="string">&quot;profile1.dat&quot;</span>;</span><br><span class="line"><span class="type">const</span> String fileNameProfile2 = <span class="string">&quot;profile2.dat&quot;</span>;</span><br><span class="line"><span class="type">const</span> String fileNameProfile3 = <span class="string">&quot;profile3.dat&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">uint16_t</span> timeoutSaveManual = <span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Setting the address where saving the number og last profile read/wrote. */</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint8_t</span> addressEEPROMNumProfile = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>My wish is the names of variable are documented themself.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>With this image you can see the final result on my desktop.</p>
+<p><img src="/2020/09/25/LED-Controller-v1-0-0/images/final-result.jpg" alt="Image of the final result"></p>
+<p>In this project I have certainly learned the <em>Object-oriented programming</em>, but I have not followed one of the <em>enginnering principles</em>: the <em>anticipation of change</em>. Infact, few week later was born the necessity to manage the LED Controller with my smartphone. Do to this, the microcontroller will has to change with an <strong>ESP8266</strong> or <strong>ESP32</strong>, that is a microcontroller with Wi-Fi. Infact, the next version will have this feature, with an OLED screen to view the values of the configuration and the profile loaded at the moment. This implies to change the PCB and the case.</p>
+<p>Thank you for reading this article and if you have some suggestion, write me at <a href="mailto:&#x64;&#97;&#x76;&#105;&#x64;&#101;&#x70;&#97;&#108;&#108;&#x61;&#x64;&#105;&#110;&#x6f;&#x40;&#104;&#111;&#116;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;">&#x64;&#97;&#x76;&#105;&#x64;&#101;&#x70;&#97;&#108;&#108;&#x61;&#x64;&#105;&#110;&#x6f;&#x40;&#104;&#111;&#116;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a>.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-do-you-need"><span class="toc-number">1.1.</span> <span class="toc-text">What do you need</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realizing-the-PCB"><span class="toc-number">2.</span> <span class="toc-text">Realizing the PCB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realizing-the-case"><span class="toc-number">3.</span> <span class="toc-text">Realizing the case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Installing-the-software"><span class="toc-number">4.</span> <span class="toc-text">Installing the software</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&text=LED Controller v1.0.0"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&is_video=false&description=LED Controller v1.0.0"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LED Controller v1.0.0&body=Check out this article: https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&title=LED Controller v1.0.0"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&name=LED Controller v1.0.0&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2020/09/25/LED-Controller-v1-0-0/&t=LED Controller v1.0.0"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2024
+    Davide Palladino
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

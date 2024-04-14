@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="IntroductionAfter talking about, a dear friend suggested me a major change of this project: use a middleware for all the transactions between the database and the device, like the Android application.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Air Analyzer v3.0.0">
+<meta property="og:url" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/index.html">
+<meta property="og:site_name" content="Davide Palladino">
+<meta property="og:description" content="IntroductionAfter talking about, a dear friend suggested me a major change of this project: use a middleware for all the transactions between the database and the device, like the Android application.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/images/uml-deployment-diagram-system.png">
+<meta property="og:image" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/images/restyling-device.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/images/android-app.png">
+<meta property="article:published_time" content="2022-02-13T18:57:00.000Z">
+<meta property="article:modified_time" content="2024-04-14T15:29:03.174Z">
+<meta property="article:author" content="Davide Palladino">
+<meta property="article:tag" content="ESP">
+<meta property="article:tag" content="printing">
+<meta property="article:tag" content="electronic">
+<meta property="article:tag" content="air analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/images/uml-deployment-diagram-system.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Air Analyzer v3.0.0</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2021/07/12/Air-Analyzer-v2-0-3/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&text=Air Analyzer v3.0.0"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&is_video=false&description=Air Analyzer v3.0.0"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Air Analyzer v3.0.0&body=Check out this article: https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&name=Air Analyzer v3.0.0&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&t=Air Analyzer v3.0.0"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Device"><span class="toc-number">2.</span> <span class="toc-text">Device</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mobile-application"><span class="toc-number">3.</span> <span class="toc-text">Mobile application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Air Analyzer v3.0.0
+    </h1>
+
+
+
+    <div class="meta">
+      
+    <div class="postdate">
+      
+        <time datetime="2022-02-13T18:57:00.000Z" itemprop="datePublished">2022-02-13</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/ESP/">ESP</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ESP/" rel="tag">ESP</a>, <a class="tag-link-link" href="/tags/air-analysis/" rel="tag">air analysis</a>, <a class="tag-link-link" href="/tags/electronic/" rel="tag">electronic</a>, <a class="tag-link-link" href="/tags/printing/" rel="tag">printing</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>After talking about, a dear friend suggested me a major change of this project: use a middleware for all the transactions between the database and the device, like the Android application.</p>
+<blockquote><p><strong>Middleware</strong> is a type of computer software that provides services to software applications beyond those available from the operating system. It can be described as “software glue”. […] An IETF workshop in 2000 defined middleware as “those services found above the transport (i.e. over TCP&#x2F;IP) layer set of services but below the application environment” (i.e. below application-level APIs). […] Middleware includes web servers, application servers, content management systems, and similar tools that support application development and delivery.</p>
+<footer><strong>Wikipedia</strong><cite>2022</cite></footer></blockquote>
+
+<p>Fortunately, I have been utilizing Lumen like a middleware but only for the Android application. In this post I want to share the changes both for device and the Android application.</p>
+<h2 id="Device"><a href="#Device" class="headerlink" title="Device"></a>Device</h2><p>In <a href="/2021/07/12/Air-Analyzer-v2-0-3/">previously version</a> the device was the directly responsible to update the database with the new measures, through a MySQL Connector. It was the only one that check the measures and send to the database only if are corrects. But what happens if the measures are incorrect for one hour or more? What happens if the device is offline for some reason? For the principle of Separation of Concerns on Software Engineering, the measures must be checked by the middleware: specifically, by Lumen.</p>
+<p><img src="/2022/02/13/Air-Analyzer-v3-0-0/images/uml-deployment-diagram-system.png" alt="UML Deployment Diagram of system"></p>
+<p>With this new update, Lumen checks if the measures are correct or not. In this last case, will be generated a record into the new table Notification. Moreover, every hour check if the last measure dates back less than one hour; otherwise, will be generated a record into the same table. This new table will be utilized for the purposes of the Android application, to notify the user about the status of the sensor.</p>
+<p>In addition, the device will be updated thanks to the static method <code>update()</code> of <code>ESPhttpUpdate</code> class. The update will happen with the OTA method: the device connects to the server, transmit the actual version and retrieve the new version if exist.</p>
+<p>Finally, I’ve decided to change the color of case, like the photo below.</p>
+<p><img src="/2022/02/13/Air-Analyzer-v3-0-0/images/restyling-device.jpg" alt="Restyling of device"></p>
+<h2 id="Mobile-application"><a href="#Mobile-application" class="headerlink" title="Mobile application"></a>Mobile application</h2><p>Android Application has had several improvements. Firstly, I have decided to add the <code>BottomNavigationView</code> where the user can select if to see the last measures of all rooms, the trend of a specific room on specific date, the last notifications or to manage the settings.</p>
+<p><img src="/2022/02/13/Air-Analyzer-v3-0-0/images/android-app.png" alt="Android App"></p>
+<p>I want to spend a few words about the notification functionality: was not implemented the push notification but has been utilized a <code>WorkManager</code> where requests the last notifications after specific time, set by the user from the settings. This <code>WorkManager</code> works in background when the application is closed, too. In my case, I spent several hours to understand why my Xiaomi Note 8 Pro did not allow this. The reason was related to the limitation of MIUI. <a target="_blank" rel="noopener" href="https://dontkillmyapp.com/">Don’t kill my app!</a> explains the reason and a possible solution.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This is the last major version of this project. The reason is that is a experiment about <em>System and Integration</em>, <em>User-Centered Interface</em> and <em>Mobile Development</em>. I have several ideas, but most likely will be not implemented:</p>
+<ul>
+<li>recovery of password;</li>
+<li>add secondary account;</li>
+<li>indicators of air quality;</li>
+<li>for the device;</li>
+<li>the Lumen framework.</li>
+</ul>
+<p>My desire has been to let this project sufficiently exploitable. Now, I would like to work to another projects. If you want, you can see two dedicated repositories from my GitHub account:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/davidepalladino/AirAnalyzer-Device">Device</a>;</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/davidepalladino/AirAnalyzer-AndroidApp">AirAnalyzer-AndroidApp</a>.</li>
+</ul>
+<p>Thank you for reading this article!</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Device"><span class="toc-number">2.</span> <span class="toc-text">Device</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mobile-application"><span class="toc-number">3.</span> <span class="toc-text">Mobile application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&text=Air Analyzer v3.0.0"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&is_video=false&description=Air Analyzer v3.0.0"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Air Analyzer v3.0.0&body=Check out this article: https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&title=Air Analyzer v3.0.0"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&name=Air Analyzer v3.0.0&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/&t=Air Analyzer v3.0.0"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2024
+    Davide Palladino
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

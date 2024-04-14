@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="IntroductionThis project was born to improve the humidity of my room, after I found out that I have the allergy to dust mites. Dust mites thrive in temperatures of 68 to 77 degrees Fahrenheit (20 to 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Air Analyzer v2.0.3">
+<meta property="og:url" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/index.html">
+<meta property="og:site_name" content="Davide Palladino">
+<meta property="og:description" content="IntroductionThis project was born to improve the humidity of my room, after I found out that I have the allergy to dust mites. Dust mites thrive in temperatures of 68 to 77 degrees Fahrenheit (20 to 2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/device-without-case.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/uml-class-diagram-device.png">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/pinout-DS3231.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/flash-download-tool-example.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/android-app.jpg">
+<meta property="og:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/uml-deployment-diagram-system.jpg">
+<meta property="article:published_time" content="2021-07-12T19:46:00.000Z">
+<meta property="article:modified_time" content="2024-04-14T15:29:03.157Z">
+<meta property="article:author" content="Davide Palladino">
+<meta property="article:tag" content="ESP">
+<meta property="article:tag" content="printing">
+<meta property="article:tag" content="electronic">
+<meta property="article:tag" content="air analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/images/device-without-case.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Air Analyzer v2.0.3</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/02/13/Air-Analyzer-v3-0-0/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/09/25/LED-Controller-v1-0-0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&text=Air Analyzer v2.0.3"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&is_video=false&description=Air Analyzer v2.0.3"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Air Analyzer v2.0.3&body=Check out this article: https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&name=Air Analyzer v2.0.3&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&t=Air Analyzer v2.0.3"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Files"><span class="toc-number">1.1.</span> <span class="toc-text">Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Device"><span class="toc-number">2.</span> <span class="toc-text">Device</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#To-build-it"><span class="toc-number">2.1.</span> <span class="toc-text">To build it</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Components"><span class="toc-number">2.1.1.</span> <span class="toc-text">Components</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wiring"><span class="toc-number">2.1.2.</span> <span class="toc-text">Wiring</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flash-firmware"><span class="toc-number">2.1.3.</span> <span class="toc-text">Flash firmware</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mobile-application"><span class="toc-number">3.</span> <span class="toc-text">Mobile application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Air Analyzer v2.0.3
+    </h1>
+
+
+
+    <div class="meta">
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-12T19:46:00.000Z" itemprop="datePublished">2021-07-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/ESP/">ESP</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ESP/" rel="tag">ESP</a>, <a class="tag-link-link" href="/tags/air-analysis/" rel="tag">air analysis</a>, <a class="tag-link-link" href="/tags/electronic/" rel="tag">electronic</a>, <a class="tag-link-link" href="/tags/printing/" rel="tag">printing</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This project was born to improve the humidity of my room, after I found out that I have the allergy to dust mites.</p>
+<blockquote><p>Dust mites thrive in temperatures of 68 to 77 degrees Fahrenheit (20 to 25 degrees Celsius). They also like humidity levels of 70 to 80 percent.</p>
+<footer><strong>Asthma and Allergy Foundation of America</strong><cite>2021</cite></footer></blockquote>
+
+<p>The main idea was of my cousin, <a target="_blank" rel="noopener" href="https://github.com/PalladinoMarco">Marco Palladino</a>. In my case, I have needed a system for doing Data Analysis about my room and others. Moreover, with this project I wanted to improve my knowledge about the <em>System and Integration</em>, <em>User-Centered Interface</em> and <em>Mobile Development</em>, especially for Android.</p>
+<h3 id="Files"><a href="#Files" class="headerlink" title="Files"></a>Files</h3><p>Here to download the files for Device and Android smartphone.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="download/software/device-air-analyzer-v2-0-3.bin">Device</a></td>
+<td>.bin</td>
+<td>343 kB</td>
+</tr>
+<tr>
+<td><a href="download/software/android-air-analyzer-v1-1-2.apk">Android</a></td>
+<td>.apk</td>
+<td>3,3 MB</td>
+</tr>
+</tbody></table>
+<h2 id="Device"><a href="#Device" class="headerlink" title="Device"></a>Device</h2><p>Every device has an ID (from 1 to 9, that can change with a short press of button) to indicate the room where the measures will be read and stored into external database, every 10 minutes.<br>The connection happens with WiFi, that can be set during and after the first installation. In first case, the user must set the own UTC timezone for storing the time along with the measures.  In second case, the user must push the button for 3 seconds to start the WPS connection. Morover, I have needed an OLED screen to visualize the actual values, the status of connection and the ID of the room set. To solder the components I deiced to use a mastrix board instead an homemade PCB like in <a href="/2020/09/25/LED-Controller-v1-0-0/">LED Controller v1.0.0</a>.</p>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/device-without-case.jpg" alt="Circuit without case"></p>
+<p>The first version used a NTP Server to check the time; with one device there were not problems, but with several devices the server refused the connection in same (or nearly) time. This is right! To solve it, I decided to use a DS3231. The NTP is used only on first installation, or on battery change of DS3231.</p>
+<p>About the classes, for this project I decided to implement the <strong>Observer pattern</strong>.</p>
+<blockquote><p>The <strong>observer pattern</strong> is a software design pattern in which an object, named the <strong>subject</strong>, maintains a list of its dependents, called <strong>observers</strong>, and notifies them automatically of any state changes, usually by calling one of their methods.</p>
+<footer><strong>Wikipedia</strong><cite>2021</cite></footer></blockquote>
+
+<p>The sensor class is the subject; the LCD and database class are the observers notified from sensor class. Because the HDC1080 is very sensitive, is set a timeout of 1 second into check’s method of sensor class. Also, the database is not updated on every new measure but after 10 minutes.</p>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/uml-class-diagram-device.png" alt="UML Class Diagram of device"></p>
+<h3 id="To-build-it"><a href="#To-build-it" class="headerlink" title="To build it"></a>To build it</h3><p>Since I decided to use a matrix board instead a PCB, there is not a circuit diagram. Anyway, in this part of this post I show you the components used, the wiring and the flashing of firmware.</p>
+<h4 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h4><table>
+<thead>
+<tr>
+<th>Qty.</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>NodeMCU V3 based on ESP8266</td>
+</tr>
+<tr>
+<td>1</td>
+<td>I2C OLED Screen (128×32, 0.91 inch)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>I2C HDC1080</td>
+</tr>
+<tr>
+<td>1</td>
+<td>I2C DS3231</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Switch Tact at 6x6x5mm</td>
+</tr>
+</tbody></table>
+<h4 id="Wiring"><a href="#Wiring" class="headerlink" title="Wiring"></a>Wiring</h4><p>In this table I want to show you the right connection of components, to work with the firmware that I prepared.</p>
+<table>
+<thead>
+<tr>
+<th>PIN board</th>
+<th>PIN component</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D1</td>
+<td>SCL of LCD, HDC1080 and DS3231</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>SDA of LCD, HDC1080 and DS3231</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Switch Tact</td>
+</tr>
+<tr>
+<td>3V3</td>
+<td>Positive terminal of LCD, HDC1080 and DS3231</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>Negative terminal of Switch Tact, LCD, HDC1080 and DS3231</td>
+</tr>
+</tbody></table>
+<p class="block-wrning"><strong>WARNING:</strong> The other pin of Switch Tact will have to connect directly to ground, without resistor. This is beacuse is used the built-in pullup resistor.</p>
+
+<p>The little DS3231 that I suggested has the labels hidden. To help you about the wiring, consider this image found on Google Image.</p>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/pinout-DS3231.jpg" alt="Pinout-DS3231"></p>
+<h4 id="Flash-firmware"><a href="#Flash-firmware" class="headerlink" title="Flash firmware"></a>Flash firmware</h4><p>To flash the firmware, you will have to install the <a target="_blank" rel="noopener" href="https://www.espressif.com/sites/default/files/tools/flash_download_tool_v3.8.7.zip">Flash Download Tool</a> and following this steps:</p>
+<ul>
+<li>select <em>Developer Mode</em>;</li>
+<li>select <em>ESP8266 DownloadTool</em>;</li>
+<li>configure it as in figure;</li>
+<li>press <em>Start</em>.</li>
+</ul>
+<p>Is very important select the location of <code>.bin</code> file and set the address to <code>0x00000</code> and select the right COM port.</p>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/flash-download-tool-example.jpg" alt="Flash Download Tool Example"></p>
+<p>After the flashing of firmware, unplug and plug the device to power supply. For the first installation of device, you will have to need a mobile application developed for Android smartphone. Every device has the need to store the values into user database, different from others.</p>
+<h2 id="Mobile-application"><a href="#Mobile-application" class="headerlink" title="Mobile application"></a>Mobile application</h2><p>Looking the details, this mobile application was born firstly to view the measures outside home. Considering that Android doesn’t communicate directly with an external database, I have chosen to use <a target="_blank" rel="noopener" href="https://lumen.laravel.com/docs/9.x">Lumen</a> as API framework. In this case, thanks to the App, I implemented a system where an user can:</p>
+<ul>
+<li>sign up and login;</li>
+<li>add new device;</li>
+<li>add, rename or delete a specific room;</li>
+<li>view the measures on specific day.</li>
+</ul>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/android-app.jpg" alt="Android App"></p>
+<p>As mentioned before, every user has the own database where can see the measures also with external and desktop application like <a target="_blank" rel="noopener" href="https://www.knime.com/">KNIME</a>.</p>
+<p><img src="/2021/07/12/Air-Analyzer-v2-0-3/images/uml-deployment-diagram-system.jpg" alt="UML Deployment Diagram of system"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Thank you for reading this article and if you have some suggestion, write me at <a href="mailto:&#100;&#x61;&#118;&#x69;&#x64;&#x65;&#112;&#97;&#108;&#x6c;&#97;&#100;&#x69;&#110;&#111;&#64;&#104;&#x6f;&#116;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#x61;&#118;&#x69;&#x64;&#x65;&#112;&#97;&#108;&#x6c;&#97;&#100;&#x69;&#110;&#111;&#64;&#104;&#x6f;&#116;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a>.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Files"><span class="toc-number">1.1.</span> <span class="toc-text">Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Device"><span class="toc-number">2.</span> <span class="toc-text">Device</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#To-build-it"><span class="toc-number">2.1.</span> <span class="toc-text">To build it</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Components"><span class="toc-number">2.1.1.</span> <span class="toc-text">Components</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wiring"><span class="toc-number">2.1.2.</span> <span class="toc-text">Wiring</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flash-firmware"><span class="toc-number">2.1.3.</span> <span class="toc-text">Flash firmware</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mobile-application"><span class="toc-number">3.</span> <span class="toc-text">Mobile application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&text=Air Analyzer v2.0.3"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&is_video=false&description=Air Analyzer v2.0.3"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Air Analyzer v2.0.3&body=Check out this article: https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&title=Air Analyzer v2.0.3"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&name=Air Analyzer v2.0.3&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://davidepalladino.github.io/2021/07/12/Air-Analyzer-v2-0-3/&t=Air Analyzer v2.0.3"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2024
+    Davide Palladino
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
