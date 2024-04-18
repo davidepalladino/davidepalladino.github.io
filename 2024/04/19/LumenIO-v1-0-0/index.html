@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://davidepalladino.github.io/2024/04/19/LumenIO-v1-0-0/images/android-app-profile-edit.jpg">
 <meta property="og:image" content="https://davidepalladino.github.io/2024/04/19/LumenIO-v1-0-0/images/android-app-library-import-export.jpg">
 <meta property="article:published_time" content="2024-04-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-18T05:26:55.252Z">
+<meta property="article:modified_time" content="2024-04-18T09:41:41.688Z">
 <meta property="article:author" content="Davide Palladino">
 <meta property="article:tag" content="ESP">
 <meta property="article:tag" content="printing">
@@ -166,7 +166,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hey! It’s been 2 years from my last post. In these years I changed company (now I’m working at <a target="_blank" rel="noopener" href="https://www.apuliasoft.com/">Apuliasoft</a>) and I got married with a beautiful wife. In an <a href="/2020/09/25/LED-Controller-v1-0-0/">old post</a> I talked about an idea of a <strong>new version</strong> of LED Controller, with <strong>wireless communication</strong> between the smartphone and the device. In these 2 years I created this new version, changing the name to <strong>LumenIO</strong>, but now I found the time to write this post. So, I’m going to explain you this new version, smaller and more beautiful than old.</p>
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hey! It’s been 2 years from my last post. In these years I changed company (now I’m working at <a target="_blank" rel="noopener" href="https://www.apuliasoft.com/">Apuliasoft</a>) and I got married with a beautiful wife. In an <a href="/2020/09/25/LED-Controller-v1-0-0/">old post</a> I talked about an idea of a <strong>new version</strong> of LED Controller, with <strong>wireless communication</strong> between the smartphone and the device. In these 2 years I created this new version, changing the name to <strong>LumenIO</strong>, but now I found the time to write this post. So, I’m going to explain you this new version, smaller and more beautiful than old one.</p>
 <h2 id="Device"><a href="#Device" class="headerlink" title="Device"></a>Device</h2><h3 id="Circuit"><a href="#Circuit" class="headerlink" title="Circuit"></a>Circuit</h3><table>
 <thead>
 <tr>
@@ -229,7 +229,7 @@
 </tbody></table>
 <p>For the circuit I decided to use a <strong>matrix board</strong>. </p>
 <p><img src="/2024/04/19/LumenIO-v1-0-0/images/device-matrix-board.jpg" alt="Image of the matrix board"></p>
-<p>The electric scheme is like the previously project, without buttons and rotatory encoders: is a black box with only RGB and power supply connection. </p>
+<p>The electric scheme is like the previous project, without buttons and rotatory encoders: is a black box with only RGB and power supply connection. </p>
 <p><img src="/2024/04/19/LumenIO-v1-0-0/images/device-result-pcb.jpg" alt="Image of the PCB"></p>
 <p>The MCU is now supplied by the <strong>Pololu D36V28F5</strong> with its more precision and current intensity, against the L7805.</p>
 <p><img src="/2024/04/19/LumenIO-v1-0-0/images/device-pololu-D36V28F5.jpg" alt="Image of the Pololu D36V28F5 component"></p>
@@ -264,7 +264,7 @@
 <td>339,6 kB</td>
 </tr>
 </tbody></table>
-<h3 id="Firmware"><a href="#Firmware" class="headerlink" title="Firmware"></a>Firmware</h3><p>The code is smaller than the previously version, because there aren’t any buttons and rotatory encoders; only the <strong>Bluetooth connection</strong> with storing of values on EEPROM. No OOP! Only Arduino classes that <strong>are already optimized</strong> for MCU. Adding a middleware class generates delay between the RAW bytes recevided from Android application and their <em>“realization”</em> on LED strip; we might have another layer that performed unnecessary (storing and writiting data) operations. This GIF explains the concept of base utilization of Arduino classes.</p>
+<h3 id="Firmware"><a href="#Firmware" class="headerlink" title="Firmware"></a>Firmware</h3><p>The code is smaller than the previous version, because there aren’t any buttons and rotatory encoders; only the <strong>Bluetooth connection</strong> with storing of values on EEPROM. No OOP! Only Arduino classes that <strong>are already optimized</strong> for MCU. Adding a middleware class generates delay between the RAW bytes recevided from Android application and their <em>“realization”</em> on LED strip; we might have another layer that performed unnecessary (storing and writiting data) operations. This GIF explains the concept of base utilization of Arduino classes.</p>
 <p><img src="/2024/04/19/LumenIO-v1-0-0/images/android-app-changing-color-without-delay.gif" alt="GIF where the Android application change color without delay"></p>
 <p>You can check and pull the project <a target="_blank" rel="noopener" href="https://github.com/davidepalladino/LumenIO-Device">from GitHub</a>.<br>Anyway, I used <a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a> on CLion IDE. Isn’t important which IDE to utilize; you could use whatever you want, covered by PlatformIO.</p>
 <p>Moreover, you could change the pin numbers dedicated to RGB. The file dedicated is <code>src/config.h</code>. Here a portion of code:</p>
