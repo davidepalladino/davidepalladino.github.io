@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/images/restyling-device.jpg">
 <meta property="og:image" content="https://davidepalladino.github.io/2022/02/13/Air-Analyzer-v3-0-0/images/android-app.png">
 <meta property="article:published_time" content="2022-02-13T18:57:00.000Z">
-<meta property="article:modified_time" content="2024-04-14T15:29:03.174Z">
+<meta property="article:modified_time" content="2025-04-12T06:45:58.244Z">
 <meta property="article:author" content="Davide Palladino">
 <meta property="article:tag" content="ESP">
 <meta property="article:tag" content="printing">
@@ -166,6 +166,31 @@
 <p>In addition, the device will be updated thanks to the static method <code>update()</code> of <code>ESPhttpUpdate</code> class. The update will happen with the OTA method: the device connects to the server, transmit the actual version and retrieve the new version if exist.</p>
 <p>Finally, I’ve decided to change the color of case, like the photo below.</p>
 <p><img src="/2022/02/13/Air-Analyzer-v3-0-0/images/restyling-device.jpg" alt="Restyling of device"></p>
+<p>Here the <strong>files</strong> about the case. If you want, you will be able to modify them.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="download/case/back.f3d">Back</a></td>
+<td>.f3d</td>
+<td>580 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/button.f3d">Button</a></td>
+<td>.f3d</td>
+<td>87 kB</td>
+</tr>
+<tr>
+<td><a href="download/case/front.f3d">Front</a></td>
+<td>.f3d</td>
+<td>329 kB</td>
+</tr>
+</tbody></table>
 <h2 id="Mobile-application"><a href="#Mobile-application" class="headerlink" title="Mobile application"></a>Mobile application</h2><p>Android Application has had several improvements. Firstly, I have decided to add the <code>BottomNavigationView</code> where the user can select if to see the last measures of all rooms, the trend of a specific room on specific date, the last notifications or to manage the settings.</p>
 <p><img src="/2022/02/13/Air-Analyzer-v3-0-0/images/android-app.png" alt="Android App"></p>
 <p>I want to spend a few words about the notification functionality: was not implemented the push notification but has been utilized a <code>WorkManager</code> where requests the last notifications after specific time, set by the user from the settings. This <code>WorkManager</code> works in background when the application is closed, too. In my case, I spent several hours to understand why my Xiaomi Note 8 Pro did not allow this. The reason was related to the limitation of MIUI. <a target="_blank" rel="noopener" href="https://dontkillmyapp.com/">Don’t kill my app!</a> explains the reason and a possible solution.</p>
@@ -240,7 +265,7 @@
     Copyright &copy;
     
     
-    2020-2024
+    2020-2025
     Davide Palladino
   </div>
   <div class="footer-right">
